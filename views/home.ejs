@@ -26,7 +26,7 @@
       
           <p>
             <label>Phone Number</label>
-            <input type="text" name="phone">
+            <input type="text" name="phone" value="whatsapp:">
           </p>
           <p class="full">
             <label>Message</label>
@@ -50,7 +50,7 @@
       if(name != '' && phone!= '' && whatsappmessage != '')
       {
         var formData = {name: name, phone: phone, whatsappmessage: whatsappmessage};
-        $('#message').html('<span style="color: red">Processing form. . . please wait. . .</span>');
+        $('#message').html('<span style="color: green">Form submitted.</span>');
         $.ajax({url: "/whatsapp", type: 'POST', data: formData, success: function(response)
         {
           var res = JSON.parse(response);
