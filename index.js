@@ -2,6 +2,8 @@ const accountSid = 'AC2f49daba592ba4e88a135ec6804e3617'; //Enter your Twilio Acc
 const authToken = 'd2ed752d46c0083d3c1eba2874522da3'; //Enter your Twilio Auth Token in place of process.env.TWILIO_ACCOUNT_SID
 
 const express = require('express');
+const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
 const path = require("path")
@@ -18,7 +20,7 @@ app.set("views", path.join(__dirname, "views"))
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-const PORT = '0.0.0.0:$PORT';
+const PORT = $PORT;
 
 app.get('/', (req, res) => {
   res.render('home');
