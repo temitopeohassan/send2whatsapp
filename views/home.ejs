@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Send 2 WhatsApp</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+  <link rel="stylesheet" href="public/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="brand"><span>WhatsApp</span> Send</h1>
+    <div class="wrapper animated bounceInLeft">
+     
+      <div class="contact">
+        <div id="message"></div>
+
+        <form method="POST" action="ajaxpost">
+          <p>
+            <label>Name</label>
+            <input type="text" name="name">
+          </p>
+      
+          <p>
+            <label>Phone Number</label>
+            <input type="text" name="phone">
+          </p>
+          <p class="full">
+            <label>Message</label>
+            <input type="text" name="whatsappmessage">
+          </p>
+          <p class="full">
+            <input type="button" onclick="submitForm();" name="save_contact" value="Send" />
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+    function submitForm()
+    {
+      var name = $('input[name=name]').val();
+      var phone = $('input[name=phone]').val();
+      var whatsappmessage = $('input[name=whatsappmessage]').val();
+
+      if(name != '' && phone!= '' && whatsappmessage != '')
+      {
+        var formData = {name: name, phone: phone, whatsappmessage: whatsappmessage};
+        $('#message').html('<span style="color: red">Processing form. . . please wait. . .</span>');
+        $.ajax({url: "/whatsapp", type: 'POST', data: formData, success: function(response)
+        {
+          var res = JSON.parse(response);
+          console.log(res);
+          if(res.success == true)
+            $('#message').html('<span style="color: green">Form submitted successfully</span>');
+          else
+            $('#message').html('<span style="color: red">Form not submitted. Some error in running the database query.</span>');
+        }
+        });
+      }
+      else
+      {
+        $('#message').html('<span style="color: red">Please fill all the fields</span>');
+      }
+      
+      
+    } 
+  </script>
+</html>
