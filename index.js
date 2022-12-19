@@ -1,9 +1,7 @@
 const accountSid = 'AC2f49daba592ba4e88a135ec6804e3617'; //Enter your Twilio Account SID in place of process.env.TWILIO_ACCOUNT_SID
-const authToken = 'd2ed752d46c0083d3c1eba2874522da3'; //Enter your Twilio Auth Token in place of process.env.TWILIO_ACCOUNT_SID
+const authToken = 'cc27fe689e47b7fea3fcec9e1ca39aa8'; //Enter your Twilio Auth Token in place of process.env.TWILIO_ACCOUNT_SID
 
 const express = require('express');
-const bodyParser = require('body-parser');
-require('dotenv').config();
 
 const app = express();
 const path = require("path")
@@ -20,7 +18,6 @@ app.set("views", path.join(__dirname, "views"))
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-const PORT = $PORT;
 
 app.get('/', (req, res) => {
   res.render('home');
@@ -32,7 +29,7 @@ app.post('/whatsapp', async (req, res) => {
   console.log(req.body);
 
 let message = req.body.whatsappmessage;
-    let senderID = req.body.phone;
+    let senderID = 'whatsapp:'+req.body.phone;
 
     console.log(message);
     console.log(senderID);
@@ -42,6 +39,6 @@ let message = req.body.whatsappmessage;
 
   });
 
-app.listen(PORT, () => {
+app.listen(3000, () => {
   console.log('Server Started');
 });
