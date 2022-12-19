@@ -38,6 +38,6 @@ let message = req.body.whatsappmessage;
 
   });
 
-app.listen(3000, () => {
+app.listen(0.0.0.0:$PORT, () => {
   console.log('Server Started');
 });
