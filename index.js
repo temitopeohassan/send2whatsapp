@@ -18,6 +18,8 @@ app.set("views", path.join(__dirname, "views"))
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+const PORT = '0.0.0.0:$PORT';
+
 app.get('/', (req, res) => {
   res.render('home');
 });
@@ -38,6 +40,6 @@ let message = req.body.whatsappmessage;
 
   });
 
-app.listen(0.0.0.0:$PORT, () => {
+app.listen(PORT, () => {
   console.log('Server Started');
 });
