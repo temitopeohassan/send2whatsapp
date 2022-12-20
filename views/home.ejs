@@ -12,13 +12,13 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="brand"><span>WhatsApp</span> Send</h1>
+    <h1 class="brand"><span>Send 2</span> WhatsApp</h1>
     <div class="wrapper animated bounceInLeft">
      
       <div class="contact">
         <div id="message"></div>
 
-        <form method="POST" action="ajaxpost">
+        <form method="POST" id="YourFormId" action="ajaxpost">
           <p>
             <label>Name</label>
             <input type="text" name="name">
@@ -29,7 +29,7 @@
             <input type="text" name="phone">
           </p>
           <p class="full">
-            <label>Message</label>
+            <label>Invitation URL</label>
             <input type="text" name="whatsappmessage">
           </p>
           <p class="full">
@@ -50,7 +50,7 @@
       if(name != '' && phone!= '' && whatsappmessage != '')
       {
         var formData = {name: name, phone: phone, whatsappmessage: whatsappmessage};
-        $('#message').html('<span style="color: green">Form submitted.</span>');
+        $('#message').html('<span style="color: green">The invitation has been sent.</span>');
         $.ajax({url: "/whatsapp", type: 'POST', data: formData, success: function(response)
         {
           var res = JSON.parse(response);
@@ -60,13 +60,16 @@
           else
             $('#message').html('<span style="color: red">Form not submitted. Some error in running the database query.</span>');
         }
+
         });
       }
+
+          
       else
       {
         $('#message').html('<span style="color: red">Please fill all the fields</span>');
       }
-      
+       $("#YourFormId")[0].reset();
       
     } 
   </script>
