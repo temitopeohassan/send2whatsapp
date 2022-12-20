@@ -11,7 +11,7 @@ const sendMessage = async (message, senderID) => {
     try {
         await client.messages.create({
             to: senderID,
-            body: message,
+            mediaUrl: message,
             from: `whatsapp:+14155238886`
         });
     } catch (error) {
